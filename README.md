@@ -1,2 +1,4 @@
-# CSVMetadataAnnotator
-A simple app to create a linked metadata entry- for a tabular csv file.
+# csv-jsonschema
+Parses csv files columns to json schema
+## Installation
+`pip install -r requirements. txt`
