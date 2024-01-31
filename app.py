@@ -59,9 +59,18 @@ st.markdown("""This app assists the process of creating a linked data descriptio
             Simply upload the file and tag each column to a concept in a controlled vocabulary and 
             download the linked data description. """)
 
-uploaded_file = st.file_uploader("Upload your csv file")
 schema:dict = load_schema()
 concepts:list = get_ontology_concepts()
+
+
+try:
+    uploaded_file = st.file_uploader("Upload your csv file")
+except Exception as error:
+    st.error(f"""It is not possible to load the csv file. Here is the error log: \n
+             {error} \n
+            Consult the README.md for more information on how to format the csv file.""")
+    uploaded_file = None
+    
 
 if uploaded_file:
     file_description = analyze_csv_bytesio(uploaded_file) 
