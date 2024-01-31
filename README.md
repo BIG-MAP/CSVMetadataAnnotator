@@ -1,7 +1,14 @@
 # CSV Metadata Annotator
 An app to facilitate the process of creating Linked data descriptions of csv files containing tabular data related to batteries and electrochemistry.
 
-## Installation
+## How to use it
+
+The app can be runned from the streamlit server here:  
+
+> Note: Running this app from the streamlit service means your csv data is uploaded to an **external server.** If you have concerns about **data security concerns**, then you need to carry out the local installation to run the app in your PC.
+
+## Local installation
+
 Clone this repository:  
  `git clone https://github.com/BIG-MAP/CSVMetadataAnnotator.git`  
 
