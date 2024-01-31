@@ -70,7 +70,7 @@ except Exception as error:
              {error} \n
             Consult the README.md for more information on how to format the csv file.""")
     uploaded_file = None
-    
+
 
 if uploaded_file:
     file_description = analyze_csv_bytesio(uploaded_file) 
@@ -82,7 +82,7 @@ if uploaded_file:
         
 
         stcol1, stcol2, stcol3, stcol4 = st.columns([1, 2, 1, 1])
-        stcol1.markdown(col_name, )
+        stcol1.markdown(col_name)
         quantity = stcol2.selectbox("Quantity", options=concepts, key=f"Q_{col_name}")
         unit_prefix = stcol3.selectbox("Unit Prefix", options=[None]+concepts, key=f"P_{col_name}")
         unit = stcol4.selectbox("Unit", options=[None]+concepts, key=f"U_{col_name}")
