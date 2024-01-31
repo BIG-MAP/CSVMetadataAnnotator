@@ -3,7 +3,7 @@ An app to facilitate the process of creating Linked data descriptions of csv fil
 
 ## How to use it
 
-The app can be runned from the streamlit server here:  
+The app can be runned from the streamlit server here:  [CSV Metadata Annotator](https://csvmetadataannotatorgit-npxdvcfym2fbq5bzzbpx4t.streamlit.app/)
 
 > Note: Running this app from the streamlit service means your csv data is uploaded to an **external server.** If you have concerns about **the security of your sensitive data**, then you need to carry out the local installation to run the app in your PC.
 
@@ -20,7 +20,7 @@ Run the app from the root directory:
 
 ## How it works
 The app loads your csv file and reads the column names from the first row, and additional attributes of the files. Then it displays input boxes, to match each column to a quantity, optional metric prefix and unit entities, as described in the BattINFO ontology.  
- 
+
 ![demo](./static/demo.gif)
 
 The columns have been annotated, the left-sidebar displays the current JSON-LD description. Once the column have been annotated, you can donwload the JSON-LD file. This file will make Semantic Systems aware of the meaning and contents within your electrochemical data.
