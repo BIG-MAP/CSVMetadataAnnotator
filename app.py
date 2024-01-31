@@ -57,7 +57,8 @@ json_container = st.sidebar.expander("JSON-LD")
 st.title("CSV annotator")
 st.markdown("""This app assists the process of creating a linked data description of a csv file. 
             Simply upload the file and tag each column to a concept in a controlled vocabulary and 
-            download the linked data description. """)
+            download the linked data description. Check the [Github repo](https://github.com/BIG-MAP/CSVMetadataAnnotator) 
+            for more information""")
 
 schema:dict = load_schema()
 concepts:list = get_ontology_concepts()
@@ -76,17 +77,17 @@ if uploaded_file:
     file_description = analyze_csv_bytesio(uploaded_file) 
     schema["tableSchema"]["dialect"].update(file_description["dialect"])
     st.markdown("## Annotate")
-    file_url = st.text_input("Location URL", help="An URL pointing to the location of your file. Example https://my_repo.com/myfile.csv")
+    file_url = st.text_input("Location URL: where is your file?", help="An URL pointing to the location of your file. Example https://my_repo.com/myfile.csv")
 
     for col_name in file_description["column_names"]:
         
 
         stcol1, stcol2, stcol3, stcol4 = st.columns([1, 2, 1, 1])
-        stcol1.markdown(col_name)
+        stcol1.markdown("**" + col_name + "**")
         quantity = stcol2.selectbox("Quantity", options=concepts, key=f"Q_{col_name}")
         unit_prefix = stcol3.selectbox("Unit Prefix", options=[None]+concepts, key=f"P_{col_name}")
         unit = stcol4.selectbox("Unit", options=[None]+concepts, key=f"U_{col_name}")
-
+        st.divider()
 
         schema["tableSchema"]["columns"].append(
             {"titles":col_name,
