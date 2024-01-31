@@ -19,7 +19,11 @@ Run the app from the root directory:
 `streamlit run app.py`
 
 ## How it works
-The app loads your csv file and reads the column names from the first row, and additional attributes of the files. Then it displays input boxes, to match each column to a quantity, optional metric prefix and unit entities, as described in the BattINFO ontology. The columns have been annotated, the left-sidebar displays the current JSON-LD description. Once the column have been annotated, you can donwload the JSON-LD file. This file will make Semantic Systems aware of the meaning and contents within your electrochemical data.
+The app loads your csv file and reads the column names from the first row, and additional attributes of the files. Then it displays input boxes, to match each column to a quantity, optional metric prefix and unit entities, as described in the BattINFO ontology.  
+ 
+![demo](./static/demo.gif)
+
+The columns have been annotated, the left-sidebar displays the current JSON-LD description. Once the column have been annotated, you can donwload the JSON-LD file. This file will make Semantic Systems aware of the meaning and contents within your electrochemical data.
 
 ## Troubleshooting
 If you csv file cannot be read, it can be because:
