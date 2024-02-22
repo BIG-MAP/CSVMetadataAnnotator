@@ -43,7 +43,7 @@ def get_ontology_concepts(url:str="https://raw.githubusercontent.com/emmo-repo/d
     try:
         with urllib.request.urlopen(url) as response:
             data = json.load(response)
-        return [key for key in data["@context"].keys() if isinstance(key, str) and key[0].isupper()]
+        return [key for key in data["@context"].keys() if isinstance(key, str) and len(key) > 0 and key[0].isupper()]
     except Exception as e:
         print("Failed to load JSON data:", e)
         return None
