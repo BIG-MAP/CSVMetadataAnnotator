@@ -55,9 +55,12 @@ def get_ontology_concepts(url:str="https://raw.githubusercontent.com/emmo-repo/d
 json_container = st.sidebar.expander("JSON-LD")
 
 st.title("CSV annotator")
-st.markdown("""This app assists the process of creating a linked data description of a csv file. 
-            Simply upload the file and tag each column to a concept in a controlled vocabulary and 
-            download the linked data description. Check the [Github repo](https://github.com/BIG-MAP/CSVMetadataAnnotator) 
+st.markdown("""App to create a linked data description of a csv file. 
+            1. Upload a csv file.  
+            2. Tag each column to a concept, prefix and unit in BattINFO.
+            3. Explore in the sidebar the JSON-LD description.  
+            4. Download the JSON-LD file. 
+            Check the [Github repo](https://github.com/BIG-MAP/CSVMetadataAnnotator) 
             for more information""")
 
 schema:dict = load_schema()
@@ -91,9 +94,9 @@ if uploaded_file:
 
         schema["tableSchema"]["columns"].append(
             {"titles":col_name,
-             "propertyUrl": quantity,
-             "hasMetricPrefix":unit_prefix,
-             "hasMeasurementUnit":unit}
+             "propertyUrl": "battinfo:"+quantity,
+             "hasMetricPrefix":"battinfo:"+unit_prefix if unit_prefix else None,
+             "hasMeasurementUnit":"battinfo:"+unit}
         )
 
     schema["url"] = file_url
