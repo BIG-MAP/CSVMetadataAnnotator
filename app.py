@@ -77,7 +77,8 @@ if uploaded_file:
     file_description = analyze_csv_bytesio(uploaded_file) 
     schema["tableSchema"]["dialect"].update(file_description["dialect"])
     st.markdown("## Annotate")
-    file_url = st.text_input("Location URL: where is your file?", help="An URL pointing to the location of your file. Example https://my_repo.com/myfile.csv")
+    #file_url = st.text_input("Location URL: where is your file?", help="An URL pointing to the location of your file. Example https://my_repo.com/myfile.csv")
+    #schema["url"] = file_url
 
     for col_name in file_description["column_names"]:
         
@@ -96,7 +97,7 @@ if uploaded_file:
              "hasMeasurementUnit":"battinfo:"+unit}
         )
 
-    schema["url"] = file_url
+    
     json_container.json(schema)
     st.sidebar.download_button("Download linked data file",
                                data=json.dumps(schema, indent=4), 
