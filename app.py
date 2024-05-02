@@ -39,14 +39,11 @@ def load_schema(filepath:str = "template.jsonld")->dict:
         return json.load(f)
 
 @st.cache_data
-def get_ontology_concepts(url:str="https://raw.githubusercontent.com/emmo-repo/domain-electrochemistry/master/context.json")-> dict:
-    try:
-        with urllib.request.urlopen(url) as response:
-            data = json.load(response)
-        return [key for key in data["@context"].keys() if isinstance(key, str) and len(key) > 0 and key[0].isupper()]
-    except Exception as e:
-        print("Failed to load JSON data:", e)
-        return None
+def get_ontology_concepts()-> list:
+    
+    with open("./data/context.json") as f:
+        data = json.load(f)
+    return [key for key in data["@context"].keys() if isinstance(key, str) and len(key) > 0 and key[0].isupper()]
     
 
 ############## APP ################################
@@ -88,14 +85,14 @@ if uploaded_file:
         stcol1, stcol2, stcol3, stcol4 = st.columns([1, 2, 1, 1])
         stcol1.markdown("**" + col_name + "**")
         quantity = stcol2.selectbox("Quantity", options=concepts, key=f"Q_{col_name}")
-        unit_prefix = stcol3.selectbox("Unit Prefix", options=[None]+concepts, key=f"P_{col_name}")
-        unit = stcol4.selectbox("Unit", options=[None]+concepts, key=f"U_{col_name}")
+        unit_prefix = stcol3.selectbox("Unit Prefix", options=["None"]+concepts, key=f"P_{col_name}")
+        unit = stcol4.selectbox("Unit", options=["None"]+concepts, key=f"U_{col_name}")
         st.divider()
 
         schema["tableSchema"]["columns"].append(
             {"titles":col_name,
              "propertyUrl": "battinfo:"+quantity,
-             "hasMetricPrefix":"battinfo:"+unit_prefix if unit_prefix else None,
+             "hasMetricPrefix":"battinfo:"+unit_prefix if unit_prefix else "None",
              "hasMeasurementUnit":"battinfo:"+unit}
         )
 
